@@ -1,46 +1,41 @@
+let computerScore = 0;
+let playerScore = 0;
 
+const myArray = ["rock", "paper", "scissors"];
 
 function getComputerChoice(array) {
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
-    }
-    
-    
-    const array = ['Rock', 'Paper', 'Scissors'];
-
- function playRound(playerSelection, computerSelection) {
-    // your code here!
-    if (player === 'rock' && computer === 'paper') {
-        return 'You lose, paper beats rock!';
-    } else if (player === 'paper' && computer === 'rock') {
-        return 'You win, paper beats rock!';
-    } else if (player === 'paper' && computer === 'scissors') {
-        return 'You lose, scissors beats paper!';
-    } else if (player === 'rock' && computer === 'scissors') {
-
-        return 'You win, rock beats scissors!';
-    } else if (player === 'scissors' && computer === 'rock') {
-
-        return 'You lose, rock beats scissors!';
-    } else if (player === 'scissors' && computer === 'paper') {
-        return 'You win, scissors beats paper!';
-    } else if (player === computer) {
-        const newPlayerSelection = prompt('Choose again between (rock, paper, scissors): ');
-        const newComputerSelection = getComputerChoice(choice1);
-        return playRound(newPlayerSelection, newComputerSelection);
-    } else {
-        return 'Enter a supported value. Rock, paper, or scissors.';
-    }
+  const randomNumber = Math.floor(Math.random() * array.length);
+  return array[randomNumber];
 }
 
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    return "It's a tie!";
+  } else if (playerSelection === "rock" && computerSelection === "scissors") {
+    playerScore++;
+    return "You win!";
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
+    playerScore++;
+    return "You win!";
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    playerScore++;
+    return "You win!";
+  } else {
+    computerScore++;
+    return "You lose!";
+  }
+}
 
-const newPlayerSelection = prompt('Choose again between (rock, paper, scissors): ').toLowerCase();
-const computerSelection = getComputerChoice().toLowerCase();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+  for (let i = 0; i <= 5; i++) {
+    const playerSelection = prompt("Please enter value").toLowerCase();
+    const computerSelection = getComputerChoice(myArray).toLowerCase();
+    console.log(playRound(playerSelection, computerSelection));
+  }
 
+  console.log("Game Over!");
+  console.log("Player Score: " + playerScore);
+  console.log("Computer Score: " + computerScore);
+}
 
-    
-
-   
-         
-         
+game();
